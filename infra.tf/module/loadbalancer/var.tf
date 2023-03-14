@@ -1,22 +1,20 @@
-resource "aws_lb" "alb" {
-  count = var.load-balancer-type == "application" ? 1 : 0
-  name               = format ("%s-%s-%s",var.appname,var.env,"application")
-  internal           = var.internal
-  load_balancer_type = var.load-balancer-type
-  security_groups    = ["sg-0b1400261fbab8adb"]
-  subnets            = ["subnet-07bdd8637ca469f74","subnet-0ec4d5cb21dcb9916"]
-  enable_deletion_protection = true
+variable "internal" {
+    type = string
+}
 
-tags = merge (var.tags,{Name= format ("%s-%s-%s",var.appname,var.env,"application")})
- }
+variable "load-balancer-type" {
+    type = string
+}
 
-resource "aws_lb" "nlb" {
-  count = var.load-balancer-type == "network" ? 1:0
-  name               = format ("%s-%s-%s",var.appname,var.env,"network")
-  internal           = var.internal
-  load_balancer_type = var.load-balancer-type
-  subnets            = ["subnet-07bdd8637ca469f74","subnet-0ec4d5cb21dcb9916"]
-  enable_deletion_protection = true
+variable "appname" {
+    type = string
+}
 
-tags = merge (var.tags,{Name= format ("%s-%s-%s",var.appname,var.env,"network")})
+variable "env" {
+    type = string
+}
+
+variable "tags" {
+    type = map(string)
+    default = {}
 }
