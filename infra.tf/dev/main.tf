@@ -5,7 +5,7 @@ provider "aws" {
 module "vpc" {
     source = "../module/vpc/"
     env = "dev"
-    appname = "student-app"
+    appname = "terraform"
     vpc_cidr_block = "192.168.0.0/16"
     public_cidr_block = ["192.168.1.0/24", "192.168.2.0/24", "192.168.3.0/24"]
     private_cidr_block = ["192.168.4.0/24", "192.168.5.0/24", "192.168.6.0/24"]
@@ -14,12 +14,13 @@ module "vpc" {
         Owner = "dev-team"
     }
 }
-    module "loadbalancer" {
+
+module "loadbalancer" {
   source = "../module/loadbalancer/"
   env = "dev"
   appname = "terraform"
   internal = "false"
-  load-balancer-type = "network"
+  load-balancer-type = "application"
   tags = {
      Owner = "dev-team"
   }
