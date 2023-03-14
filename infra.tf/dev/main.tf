@@ -14,3 +14,13 @@ module "vpc" {
         Owner = "dev-team"
     }
 }
+    module "loadbalancer" {
+  source = "../module/loadbalancer/"
+  env = "dev"
+  appname = "terraform"
+  internal = "false"
+  load-balancer-type = "network"
+  tags = {
+     Owner = "dev-team"
+  }
+}
