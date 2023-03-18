@@ -18,3 +18,15 @@ variable "tags" {
     type = map(string)
     default = {}
 }
+
+variable "security_groups" {
+    type = set(string)
+}
+
+variable "subnets" {
+    type = list(string)
+}
+
+variable "vpc_id" {
+  type = string
+}
