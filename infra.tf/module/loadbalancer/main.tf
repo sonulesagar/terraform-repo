@@ -3,10 +3,10 @@ resource "aws_lb" "alb" {
   name               = format ("%s-%s-%s",var.appname,var.env,"application")
   internal           = var.internal
   load_balancer_type = var.load-balancer-type
-  security_groups    = ["sg-0b1400261fbab8adb"]
-  subnets            = ["subnet-07bdd8637ca469f74","subnet-0ec4d5cb21dcb9916"]
-  enable_deletion_protection = true
-
+  security_groups    = var.security_groups
+  subnets            = var.subnets
+  enable_deletion_protection = false
+  
 tags = merge (var.tags,{Name= format ("%s-%s-%s",var.appname,var.env,"application")})
  }
 
@@ -15,8 +15,8 @@ resource "aws_lb" "nlb" {
   name               = format ("%s-%s-%s",var.appname,var.env,"network")
   internal           = var.internal
   load_balancer_type = var.load-balancer-type
-  subnets            = ["subnet-07bdd8637ca469f74","subnet-0ec4d5cb21dcb9916"]
-  enable_deletion_protection = true
-
+  subnets            = var.subnets
+  enable_deletion_protection = false
+   
 tags = merge (var.tags,{Name= format ("%s-%s-%s",var.appname,var.env,"network")})
 }
