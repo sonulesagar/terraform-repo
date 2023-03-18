@@ -3,11 +3,11 @@ variable "vpc_cidr_block" {
 }
 
 variable "public_cidr_block" {
-    type = list
+    type = list(any)
 }
 
 variable "private_cidr_block" {
-    type = list
+    type = list(any)
 }
 
 variable "availability_zone" {
@@ -20,9 +20,9 @@ variable "appname" {
 
 variable "tags" {
     type = map(string)
-    default = {}
 }
 
 variable "env" {
     type = string
 }
+
